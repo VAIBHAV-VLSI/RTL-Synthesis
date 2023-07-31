@@ -29,9 +29,11 @@ Below is the screenshot showing sucessful launch:
 <summary> Iverilog </summary>
     
 I installed iverilog using the following command:
+
 ```
 sudo apt-get install iverilog
 ```
+
 Below is the screenshot showing sucessful launch:
 <img width="813" alt="Screenshot 2023-07-31 at 10 20 20 AM" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/19fb74cb-29dd-4a9a-ab16-5cdf595536ad">
 </details>
@@ -39,6 +41,7 @@ Below is the screenshot showing sucessful launch:
     
 <summary> Gtkwave </summary>
 I installed iverilog using the following command:
+
 ```
 sudo apt-get install gtkwave
 ```
