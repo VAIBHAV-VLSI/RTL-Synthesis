@@ -1,5 +1,5 @@
 <details>
- <summary> # Day 0 </summary>
+ <summary> <strong> DAY 0</strong> </summary>
 <details>
  <summary> Summary </summary>
  Did the installation of all the required tools.
