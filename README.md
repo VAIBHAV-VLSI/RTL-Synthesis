@@ -1,4 +1,5 @@
-#DAY 0
+<details>
+ <summary> # Day 0 </summary>
 <details>
  <summary> Summary </summary>
  Did the installation of all the required tools.
@@ -49,3 +50,4 @@ Below is the screenshot showing sucessful launch:
 <img width="1470" alt="Screenshot 2023-07-31 at 10 13 21 AM" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/4bec3f01-5140-48b4-9096-e78c65e40e1e">
 </details>
 </summary>
+</details>
