@@ -1,13 +1,13 @@
-
+#DAY 0
 <details>
  <summary> Summary </summary>
+ Did the installation of all the required tools.
 
-I installed the needed tools.
 </details>	
 	
  <details>
  <summary> Yosys </summary>
-I installed Yosys using the following commands:
+Installed Yosys using the following commands:
      
 ```
 $ git clone https://github.com/YosysHQ/yosys.git
@@ -28,7 +28,7 @@ Below is the screenshot showing sucessful launch:
 <details>  
 <summary> Iverilog </summary>
     
-I installed iverilog using the following command:
+Installed iverilog using the following command:
 
 ```
 sudo apt-get install iverilog
@@ -40,7 +40,7 @@ Below is the screenshot showing sucessful launch:
 <details>  
     
 <summary> Gtkwave </summary>
-I installed iverilog using the following command:
+Installed iverilog using the following command:
 
 ```
 sudo apt-get install gtkwave
