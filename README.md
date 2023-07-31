@@ -1,6 +1,5 @@
 
 <details>
-<summary>details>
  <summary> Summary </summary>
 
 I installed the needed tools.
@@ -44,6 +43,6 @@ I installed iverilog using the following command:
 sudo apt-get install gtkwave
 ```
 Below is the screenshot showing sucessful launch:
-<img width="1048" alt="gtkwave" src="https://github.com/alwinshaju08/Alwin_iiitb_asic_class/assets/69166205/a554ecec-7b1c-472a-83c1-ccc20e9a35d5">
+<img width="1470" alt="Screenshot 2023-07-31 at 10 13 21 AM" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/4bec3f01-5140-48b4-9096-e78c65e40e1e">
 </details>
 </summary>
