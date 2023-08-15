@@ -280,7 +280,6 @@ endmodule
 	
 </div>
 
-
 <h3>Flat Synthesis Example</h3>
 <br>
 <p>Following image shows the netlist produced by Flat Synthesis.</p>
