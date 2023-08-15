@@ -1636,7 +1636,7 @@ endmodule
 
 <h2>References</h2>
  <ul>
-<li><a href ="https://github.com/kunalg123/">Kunal Ghosh Github(Mentor)</a></li>
+<li><a href ="https://github.com/kunalg123/">Kunal Ghosh Sir (Mentor)</a></li>
 <li><a href ="https://github.com/mariamrakka/">Mariam Rakka</a></li>
 
 
