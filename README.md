@@ -594,7 +594,7 @@ Sequential logic optimizations include:<br>
 4-) Sequential logical cloning (when mindful physical synthesis is performed to optimize the moving plane)<br>
 </details>	
  
- <br>
+
 
 <details>
  <summary> Verilog codes </summary>
@@ -718,7 +718,326 @@ Screenshots from Terminal:<br>
 </details>
 
 
+
+<details><summary><strong>Sequential Logic Optimisations</strong></summary>
+<h3>Sequential Logic Optimisations</h3><br>
+<p>In this section various cases of constant propogation in Sequential circuit are being demonstrated. Through logic optimisations via Sequential constant propogation it is seen that the cases in which Unoptimised implementation is seen as a combination of flip-flops can be optimised to a circuit without flip-flops. Though constant propogation does not simply guarantee the reduction of flip-flops as is observed in the following examples. </p><hr>
+
+
+<p>
+	<h3><u>Design 1</u></h3>
+	
+```
+         module dff_const1(input clk, input reset, output reg q);
+         always @(posedge clk, posedge reset)
+         begin
+	  if(reset)
+		q <= 1'b0;
+	  else
+		q <= 1'b1;
+         end
+
+         endmodule
+
+```
+
+ <br><p>Here Code represents a D-flipflop input of which is fixed at logic 1 and reset makes output logic 0. Though the input is constant but it does not simplify the circuit as seen in the below figure depicting synthesis output.</p><br>
+
+ <h4>Synthesis Tool Output:</h4>
+ <div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260280385-8940d1d3-6c27-4857-8745-9ecc7e3695fe.png">
+ </div>
+ 
+<br><h4>Explanation</h4><br>
+<b>Waveform for above circuit:</b><br>
+<div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260283302-59f55bf4-6c76-4b3a-9d13-06a99ec810ff.png">
+ </div>
+
+ <p>From above waveforms it can be seen that the output depends on clock so presence of flip-flop is required.</p>
+
+</p>
+<p>
+	<h4>Steps Involved</h4>
+	 <div align="center">
+<img width="961" alt="Screenshot 2023-08-15 at 11 10 35 PM" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/3244d61b-f011-4bf3-b38d-d47eb9b582cf">
+  </div>
+<br>
+ <div align="center">
+<img width="467" alt="Screenshot 2023-08-15 at 11 09 58 PM" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/f595b3d6-576d-4abe-b6a7-8de3f49ba452">
+  </div>
+  <br>
+   <div align="center">
+    <img src="https://user-images.githubusercontent.com/140998787/260280339-03bf3231-0c3f-4bee-a0eb-f305b0b7c360.png">
+  </div>
+  <br>
+ 
+</p>
+
+
+<p>
+	<h3><u>Design 2</u></h3>
+	
+```
+        module dff_const2(input clk, input reset, output reg q);
+        always @(posedge clk, posedge reset)
+        begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+        end
+        //here q remains 1 always
+        endmodule
+```
+
+<br><p> Here input D-flipflop is fixed at logic 1 and reset also makes output 1. So, q always remains 1 hence circuit gets optimised as a buffer. </p><br>
+<h4>Synthesis Tool Output:</h4>
+ <div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260280378-0ae20c21-027e-4898-89a1-0775f25ee37a.png">
+ </div>
+
+ 
+<br><h4>Explanation</h4><br>
+<b>Waveform for above circuit:</b><br>
+<div align ="center">
+<img width="1005" alt="Screenshot 2023-08-15 at 11 16 54 PM" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/2376ec7d-7d34-44f9-b96c-a56820570954">
+
+ </div> </div>
+
+ <p>From above waveforms it can be seen that the output  remains 1 and does not depends on clock flip-flop is not required and circuit gets optimised as a buffer.</p>
+
+</p>
+
+
+
+
+<p>
+	<h3><u>Design 3</u></h3>
+ 
+	
+```
+       module dff_const3(input clk, input reset, output reg q);
+       reg q1;
+
+       always @(posedge clk, posedge reset)
+        begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+        end
+
+        endmodule
+
+```
+
+<br><p>Here code represents two cascaded D flipflops and input of 1st D-flipflop is fixed at 1. </p> <br>
+ <h4>Synthesis Tool Output:</h4>
+ <div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260280351-4cc14a53-3fd9-4d7f-ab75-b6e9fc8c4ee6.png">
+ </div>
+ 
+<br><h4>Explanation</h4><br>
+<b>Waveform for above circuit:</b><br>
+<div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260280354-7ec7056d-9de6-41ff-874f-4b5eb031c742.png">
+ </div>
+
+ <p>From above waveforms it can be seen that the output and the intermediate signal value depends on clock so flip-flop is required.</p>
+
+</p>
+
+
+<h3><u>Design 4</u></h3>
+ 
+	
+```
+      module dff_const4(input clk, input reset, output reg q);
+      reg q1;
+
+      always @(posedge clk, posedge reset)
+      begin
+       if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b1;
+       end
+       else
+       begin
+		q1 <= 1'b1;
+		q <= q1;
+      end
+      end
+
+     endmodule
+
+```
+
+<br><p>Here code represents two cascaded D flipflops and input of 1st D-flipflop is fixed at 1.But unlike the previous case circuit gets optimised into buffers.</p> <br>
+
+ <h4>Synthesis Tool Output:</h4>
+ <div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260280338-bdb8da9f-772c-47db-b3c6-4158ace0fbde.png">
+ </div>
+ 
+<br><h4>Explanation</h4><br>
+<b>Waveform for above circuit:</b><br>
+<div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260280333-802853f2-a23b-49cc-8b11-95e30e8aaea5.png">
+ </div>
+
+ <p>From above waveforms it can be seen that the output and the intermediate signal value does not depends on clock so flip-flop is not required.</p>
+
+</p>
+
+<h3><u>Design 5</u></h3>
+ 
+	
+```
+      
+module dff_const5(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b0;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+
+```
+<br><p>Here code represents two cascaded D flipflops and input of 1st D-flipflop is fixed at 1. </p> <br>
+
+ <h4>Synthesis Tool Output:</h4>
+ <div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260285591-2c24121a-95d8-4f89-8ecd-ce499c96c425.png">
+ </div>
+ 
+<br><h4>Explanation</h4><br>
+<b>Waveform for above circuit:</b><br>
+<div align ="center">
+	 <img src = "https://user-images.githubusercontent.com/140998787/260285595-5de50eb7-9a50-4671-9d60-3a93941854a5.png">
+ </div>
+<br>
+ <p>From above waveforms it can be seen that the output and the intermediate signal value depends on clock so flip-flop is required.</p>
+
+</p>
+
+
+<p>
+	<h2>Sequential Optimisations of unused outputs</h2>
+	<p>The logic elements which does not have any impact on primary outputs of the module gets optimised such that we have a circuit that drives the output in desired way and portion of circuit driving unneccessary logic elements gets removed.We understand it more clearly through following examples.</p>
+        <h3>Design 1</h3>
+	
+
+```
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = count[0];
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+
+```
+
+<br>
+In the above circuit code is defining an up counter and output depends on count[0] and not on other two bits of count. So, after synthesis we get a single D-flip flop(as shown below) rather than three flipflops. This is because output does not depends on other two bits of counter so it gets optimised to produce a circuit that is neccessary to drive the output in desired manner.
+
+<br>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260304146-83d69d2c-cdf2-4a3e-94b9-e830f1170722.png">
+</div>
+<br>
+
+
+
+ <h3>Design 2</h3>
+ 
+```
+module counter_opt2 (input clk , input reset , output q);
+reg [2:0] count;
+assign q = (count[2:0] == 3'b100);
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+
+<br>
+In the above circuit code is defining an up counter and output depends on all the three bits of count. So, after synthesis we get three D-flip flops(as shown below) . Here circuit is not reduced because output depends all the bits of counter.
+
+<br>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260304139-9a5a9d34-eb83-44c4-ac72-be6e16d6870e.png">
+</div>
+<br>
+
+
+<p><h4>Steps Involved</h4>
+	<br>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260304137-0ff9dd97-5f3a-4c21-ae2c-e7a0d541328d.png">
+</div>
+
+<br>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260304138-054cf173-a2a3-4ea2-9d98-e260678ee1d2.png">
+</div>
+<br>
+
+
+</p>
+</p>
+
+
 </details>
+
+</details>
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <details>
  <summary> <strong> DAY 4</strong> </summary>
