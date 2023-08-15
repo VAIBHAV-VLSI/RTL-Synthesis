@@ -5,7 +5,7 @@
  Did the installation of all the required tools.
 
 </details>	      
-      
+        
  <details>      
  <summary> Yosys </summary>    
 Installed Yosys using the following commands:  
