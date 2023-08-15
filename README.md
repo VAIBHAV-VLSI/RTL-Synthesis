@@ -298,7 +298,7 @@ Screenshots from Terminal:<br>
 </details>
 
 
-
+</details>
 
 <details>
  <summary> <strong> DAY 4</strong> </summary>
@@ -485,10 +485,422 @@ Below is the screenshot of the obtained simulation, and this mismatches with pre
 <img width="993" alt="Screenshot 2023-08-15 at 9 49 51 PM" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/37f143f5-bc4f-4c71-a5f0-6a29cd1c2c50">
 	
 </details>
-
-
-
-
  </details>
 
+
+<details>
+	
+<summary><strong>Day 5</strong></summary>
+
+  <details>
+	  <summary><strong>Incomplete If</strong></summary>
+	  <h2>Incomplete if</h2>
+	  <h3>Design 1 Verilog Code</h3>
+
+```
+module incomp_if (input i0 , input i1 , input i2 , output reg y);
+always @ (*)
+begin
+	if(i0)
+		y <= i1;
+end
+endmodule
+
+```
+<p>Here action corresponding to else condition is not specified so output will remain same when if condition is not met and a latch will be inferred.</p>
+<h3>Waveform</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260558368-7655ac13-3d1c-40e4-a7dd-a59953bdee11.png">
+</div>
+<br>
+<p>If i0 is 1 , y follows i1 but otherwise it remains the same.</p>
+<br>
+<h3>Components Inferred</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260558356-3d69c7a5-1fad-4715-bb9c-3b2440dcc2a2.png">
+</div>
+<h3>Synthesis Output</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260558365-b4c88c2d-d5fc-408b-9d39-a3cd35c8d5c0.png">
+</div>
+
+<br>
+<h3>Design 2 Verilog Code</h3>
+
+```
+
+module incomp_if2 (input i0 , input i1 , input i2 , input i3, output reg y);
+always @ (*)
+begin
+	if(i0)
+		y <= i1;
+	else if (i2)
+		y <= i3;
+
+end
+endmodule
+
+```
+<h3>Waveform :</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260563487-6698f39b-2399-4c71-a4f9-0c4629b19332.png">
+</div>
+<br>
+<p>When i0 is 1 output y follows i1.</p>
+<br>
+<p>When i0 is 0 and i2 is 1 output y follows i3.</p>
+<br>
+<p>When i0 = 0 and i2= 0 output y remains the same.</p>
+
+<h3>Components Inferred</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260563479-9f4e0e11-9b90-464e-9284-fe8d9964a733.png">
+</div>
+<br>
+
+<h3>Output Circuit</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260563485-2f0c632b-9e8c-4caa-864d-a367fa47ac1e.png">
+</div>
+<br>
+
+
+  </details>
+  
+  <details>
+	  <summary><strong>Incomplete Case</strong></summary>
+          <h2>Various Case Statements</h2>
+	  <h3>Design 1 Verilog Code</h3>
+
+ ```
+
+module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : y = i0;
+		2'b01 : y = i1;
+	endcase
+end
+endmodule
+
+```
+<br>
+<p>Action corresponding to sel = 10 and sel = 11 is not specified so ouput remains unchanged and a latch is inferred.</p>
+<br>
+<h3>Waveform</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260573152-af3bfbd4-b434-4e79-ad90-bc99002adc0f.png">
+	
+</div>
+<br>
+<h3>Components Inferred</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260573136-aa2646cc-aa50-434e-a88b-946f7e7f8a2f.png">
+	
+</div>
+<br>
+<h3>Output Circuit</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260573147-e7edee64-eac8-411e-8ee4-b43fc6d3c4cb.png">
+	
+</div>
+<br>
+
+ <h3>Design 2 Verilog Code</h3>
+
+ ```
+
+
+
+module comp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : y = i0;
+		2'b01 : y = i1;
+		default : y = i2;
+	endcase
+end
+endmodule
+
+```
+<br>
+
+<br>
+<h3>Waveform</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260581582-7667b7cd-8668-432b-9239-49bbfee8e831.png">
+	
+</div>
+<br>
+<h3>Components Inferred</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260581573-b7f3c6db-5136-45ab-9f4f-93a1acc0c6df.png">
+	
+</div>
+<br>
+<h3>Output Circuit</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260581579-5cfaa54a-503a-4084-b890-210cef96845a.png">
+	
+</div>
+<br>
+<p>In this RTL, case statement is specified completely so no latch is inferred.</p>	
+<br>
+ <h3>Design 3 Verilog Code</h3>
+
+ ```
+module partial_case_assign (input i0 , input i1 , input i2 , input [1:0] sel, output reg y , output reg x);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : begin
+			y = i0;
+			x = i2;
+			end
+		2'b01 : y = i1;
+		default : begin
+		           x = i1;
+			   y = i2;
+			  end
+	endcase
+end
+endmodule
+
+
+
+
+```
+<br>
+
+<br>
+<h3>Waveform</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260618651-341e2c05-fe92-40be-82e7-1a51424ddb54.png">
+	
+</div>
+<br>
+<p>The value of x remains unchanged for the period when sel = 01.</p>
+<br>
+<h3>Components Inferred</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260618641-0f009e41-472e-4eea-9d5c-4f3ec7a595ac.png">
+	
+</div>
+<br>
+<h3>Output Circuit</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260618647-9c418c26-8de4-4368-9ebe-d1664514edbd.png">
+	
+</div>
+<br>
+
+<br>
+ <h3>Design 4 Verilog Code</h3>
+
+ ```
+
+module bad_case (input i0 , input i1, input i2, input i3 , input [1:0] sel, output reg y);
+always @(*)
+begin
+	case(sel)
+		2'b00: y = i0;
+		2'b01: y = i1;
+		2'b10: y = i2;
+		2'b1?: y = i3;
+		//2'b11: y = i3;
+	endcase
+end
+
+endmodule
+
+
+```
+<br>
+<p>For sel = 10 we have two matching conditions which is not a good coding practice and produces errorneous results as we see in following text.</p>
+
+<br>
+<h3>Waveform of RTL SImulation</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260622555-1c29e6d8-cb8c-4df5-a4c7-ac89613d412d.png">
+	
+</div>
+<br>
+
+<br>
+<h3>Components Inferred</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260622560-697eb737-c7b5-4a44-a4ef-6b61cbe472c0.png">
+	
+</div>
+<br>
+<h3>Output Circuit</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260622561-58a23e3d-d288-4d01-b2df-24094fcf830b.png">
+	
+</div>
+<br>
+
+<h3>Waveform of Above Netlist</h3>
+<div align = "center">
+
+<img src = "https://user-images.githubusercontent.com/140998787/260622559-6b035481-4c0e-4e21-87b2-8e841ffdf12e.png">
+	
+</div>
+<br>
+In the above waveform, for sel = 10 output is mirroring i2 and for sel = 11 output is mirroring i3 whereas incase of RTL simulation waveform output remains constant so it is producing a mismatch.
+It is due to a badly written case statement where we have more than one conditions matching for the same input.
+<br>
+
+  </details>
+  <details>
+	  <summary><strong>For Loop and For generate</strong></summary>
+	  <h3>Design 1 MUX Verilog Code</h3>
+
+```
+
+module mux_generate (input i0 , input i1, input i2 , input i3 , input [1:0] sel  , output reg y);
+wire [3:0] i_int;
+assign i_int = {i3,i2,i1,i0};
+integer k;
+always @ (*)
+begin
+for(k = 0; k < 4; k=k+1) begin
+	if(k == sel)
+		y = i_int[k];
+end
+end
+endmodule
+
+
+```
+
+<h3>Waveform Output</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260643572-be3db5ac-9fa6-4855-8571-bb695ea3db85.png">
+</div>
+
+<h3>Components Inferred</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260644536-345441ec-ff0a-48cb-921b-711937524a54.png">
+</div>
+
+<h3>Synthesis Output</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260645038-3dea201d-411b-4cb1-b89f-33b742d2a97c.png">
+</div>
+<br>
+<h3>Design 2 DeMux Verilog Code</h3>
+
+```
+
+module demux_generate (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+reg [7:0]y_int;
+assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+integer k;
+always @ (*)
+begin
+y_int = 8'b0;
+for(k = 0; k < 8; k++) begin
+	if(k == sel)
+		y_int[k] = i;
+end
+end
+endmodule
+
+
+```
+
+<h3>Waveform </h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260647219-e83fb946-ea2d-4cbd-abf5-76ae5a7854be.png">
+</div>
+<br>
+<h3>Components Inferred</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260648515-7f020e5a-6d7c-430e-8d12-85513b32ba8d.png">
+</div>
+<br>
+<h3>Synthesis Output</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260648510-76addbab-651c-4b73-bd5b-602f9b413ef0.png">
+</div>
+
+<br>
+<h3>Design Ripple Carry Adder using generate</h3>
+
+```
+
+module fa (input a , input b , input c, output co , output sum);
+	assign {co,sum}  = a + b + c ;
+endmodule
+
+module rca (input [7:0] num1 , input [7:0] num2 , output [8:0] sum);
+wire [7:0] int_sum;
+wire [7:0]int_co;
+
+genvar i;
+generate
+	for (i = 1 ; i < 8; i=i+1) begin
+		fa u_fa_1 (.a(num1[i]),.b(num2[i]),.c(int_co[i-1]),.co(int_co[i]),.sum(int_sum[i]));
+	end
+
+endgenerate
+fa u_fa_0 (.a(num1[0]),.b(num2[0]),.c(1'b0),.co(int_co[0]),.sum(int_sum[0]));
+
+
+assign sum[7:0] = int_sum;
+assign sum[8] = int_co[7];
+endmodule
+
+
+```
+
+<h3>Waveform </h3>
+<div align = "center">
+	<img src = "https://github.com/NiteshIIITB/IIIT_ASIC/assets/140998787/0038dde5-01ec-4ea6-a3e7-d2b493d0eb04">
+</div>
+<br>
+<h3>Components Inferred</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260670384-10128dc7-fd8f-4557-b83f-05a74673ff18.png">
+</div>
+<br>
+<h3>Synthesis Output</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260670388-f28aefae-0fc6-44ca-8432-e23956b2e825.png">
+</div>
+<br>
+<h3>GLS ouput</h3>
+<div align = "center">
+	<img src = "https://user-images.githubusercontent.com/140998787/260670378-e22dd604-2d96-4e76-9e57-1b55cc6404e2.png">
+</div>
+<br>
+<p>Waveform generated from Netlist is same as the waveform generated by RTL Design Simulation. Hence obtained netlist is appropriate for the defined design.</p>
+
+   
+  </details>
+  
+</details>
+ 
+
+
+<h2>References</h2>
+ <ul>
+<li><a href ="https://github.com/kunalg123/">Kunal Ghosh Github(Mentor)</a></li>
+	
+ </ul>
 
