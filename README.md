@@ -6,7 +6,7 @@
 
 </details>	  
     
- <details>   
+ <details>      
  <summary> Yosys </summary>    
 Installed Yosys using the following commands:
      
