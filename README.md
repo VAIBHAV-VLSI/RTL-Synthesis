@@ -8,7 +8,7 @@
       
  <details>      
  <summary> Yosys </summary>    
-Installed Yosys using the following commands:
+Installed Yosys using the following commands:  
      
 ```
 $ git clone https://github.com/YosysHQ/yosys.git
