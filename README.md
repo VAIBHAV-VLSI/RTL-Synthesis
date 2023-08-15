@@ -795,7 +795,6 @@ Screenshots from Terminal:<br>
  <div align ="center">
 	 <img src = "https://user-images.githubusercontent.com/140998787/260280378-0ae20c21-027e-4898-89a1-0775f25ee37a.png">
  </div>
-
  
 <br><h4>Explanation</h4><br>
 <b>Waveform for above circuit:</b><br>
