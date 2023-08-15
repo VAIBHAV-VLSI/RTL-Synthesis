@@ -4,7 +4,7 @@
  <summary> Summary </summary>
  Did the installation of all the required tools.
 
-</details>	  
+</details>	    
       
  <details>      
  <summary> Yosys </summary>    
