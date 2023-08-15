@@ -490,12 +490,12 @@ Below is the screenshot of the obtained simulation, and this mismatches with pre
 
 <details>
 	
-<summary><strong>Day 5</strong></summary>
+<summary><strong>DAY 5</strong></summary>
 
   <details>
 	  <summary><strong>Incomplete If</strong></summary>
 	  <h2>Incomplete if</h2>
-	  <h3>Design 1 Verilog Code</h3>
+	  <h3> Design-1 Verilog Code</h3>
 
 ```
 module incomp_if (input i0 , input i1 , input i2 , output reg y);
@@ -515,17 +515,17 @@ endmodule
 <br>
 <p>If i0 is 1 , y follows i1 but otherwise it remains the same.</p>
 <br>
-<h3>Components Inferred</h3>
+<h4>Below is the screenshot of the Components Inferred</h4>
 <div align = "center">
 	<img src = "https://user-images.githubusercontent.com/140998787/260558356-3d69c7a5-1fad-4715-bb9c-3b2440dcc2a2.png">
 </div>
-<h3>Synthesis Output</h3>
+<h4>Below is the screenshot of the obtained Synthesis</h4>
 <div align = "center">
 	<img src = "https://user-images.githubusercontent.com/140998787/260558365-b4c88c2d-d5fc-408b-9d39-a3cd35c8d5c0.png">
 </div>
 
 <br>
-<h3>Design 2 Verilog Code</h3>
+<h4>Design-2 Verilog Code</h4>
 
 ```
 
@@ -541,7 +541,7 @@ end
 endmodule
 
 ```
-<h3>Waveform :</h3>
+<h4>Waveform :</h4>
 <div align = "center">
 	<img src = "https://user-images.githubusercontent.com/140998787/260563487-6698f39b-2399-4c71-a4f9-0c4629b19332.png">
 </div>
@@ -552,13 +552,13 @@ endmodule
 <br>
 <p>When i0 = 0 and i2= 0 output y remains the same.</p>
 
-<h3>Components Inferred</h3>
+<h4>Below is the screenshot of the Components Inferred</h4>
 <div align = "center">
 	<img src = "https://user-images.githubusercontent.com/140998787/260563479-9f4e0e11-9b90-464e-9284-fe8d9964a733.png">
 </div>
 <br>
 
-<h3>Output Circuit</h3>
+<h4>Output Circuit</h4>
 <div align = "center">
 	<img src = "https://user-images.githubusercontent.com/140998787/260563485-2f0c632b-9e8c-4caa-864d-a367fa47ac1e.png">
 </div>
@@ -570,7 +570,7 @@ endmodule
   <details>
 	  <summary><strong>Incomplete Case</strong></summary>
           <h2>Various Case Statements</h2>
-	  <h3>Design 1 Verilog Code</h3>
+	  <h4>Verilog Code</h4>
 
  ```
 
