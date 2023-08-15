@@ -106,7 +106,6 @@ yosys> show
 	
 <img width="676" alt="synthesis_design" src="https://github.com/VaibhavTiwari-IIITB/IIITB-ASIC-Vaibhav/assets/140998525/3959ec90-02d3-4a2e-8003-17b32dc275e8">
 
-
 	
  I used the following commands to generate the netlist:
  ```bash
