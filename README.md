@@ -10,7 +10,7 @@
  <summary> Yosys </summary>    
 Installed Yosys using the following commands:  
      
-```
+``` 
 $ git clone https://github.com/YosysHQ/yosys.git
 $ cd yosys-master 
 $ sudo apt install make 
